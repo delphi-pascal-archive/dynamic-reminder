@@ -1,0 +1,9 @@
+    ///========================================== PANELs ==========
+    procedure CreaPanels(NOM:string; NL,NC:integer; L,H:integer; X,Y:integer;
+                         LST:string;  couleur:integer;PROC:TNotifyEvent);
+    procedure FreePanels(NOM:string; NL,NC:integer);
+    procedure TextePanel(NOM:string; T:string);
+    procedure FontPanels(NOM:string; NL,NC:integer; siz:integer);
+    ///============================================================
+    ///============================================================
+    // voir commentaires sur TabloB.int 

@@ -1,0 +1,71 @@
+///=============================== BOUTONS =====================================
+// Dernière modification : 31/12/2009
+//------------------------------------------------------------------------------
+procedure TForm1.CreaBoutons(NOM:string; NL,NC:integer; L,H:integer;
+                             X,Y:integer; LST:string; PROC:TNotifyEvent);
+// nécessite l'unité GestH
+var i,j,xx:Integer; z:string; bb:Tbutton;
+begin
+for j:=0 to NL-1 do
+    for i:=0 to NC-1 do
+        begin
+        xx := j*nC+i+1;
+        z := NOM + IntToStr(xx);
+        bb := Tbutton.Create(self);
+        bb.Name    := z;
+        bb.Left    := i*L+X;
+        bb.top     := j*H+Y;
+        bb.width   := L;
+        bb.height  := H;
+        bb.caption := geth(LST,xx-1); // type gestH
+        bb.Parent  := Form1;
+        bb.visible := true;
+        bb.Tag     := xx;
+        bb.OnClick := PROC
+        end
+end;
+//------------------------------------------------------------------------------
+procedure TForm1.FreeBoutons(NOM:string; NL,NC:integer);
+var i,n:integer;
+begin
+n := NL*NC-1;
+for i:=0 to n do Tbutton(findComponent(NOM + inttostr(i))).Free
+end;
+//------------------------------------------------------------------------------
+procedure TForm1.FontBoutons(NOM:string; NL,NC:integer; siz:integer);
+var i,n:integer;
+begin
+n := NL*NC;
+for i:=1 to n do Tbutton(findComponent(NOM + inttostr(i))).Font.Size := siz ;
+end;
+//------------------------------------------------------------------------------
+procedure TForm1.GrasBoutons(NOM:string; NL,NC:integer; e:integer=1);
+var i,n:integer;  X:TfontStyles;
+begin
+if e=1
+   then x := [fsBold]
+   else x := [];
+n := NL*NC;
+for i:=1 to n do Tbutton(findComponent(NOM + inttostr(i))).Font.Style := X;
+end;
+//------------------------------------------------------------------------------
+procedure TForm1.CaptionsBoutons(NOM:string; NL,NC:integer; H:string);
+var i,n:integer;
+begin
+n := NL*NC;
+for i:=1 to n do Tbutton(findComponent(NOM + inttostr(i))).caption := getH(H,i);
+end;
+//------------------------------------------------------------------------------
+procedure TForm1.GrasBouton(NOM:string; e:integer=1);
+var  X:TfontStyles;
+begin
+if e=1
+   then x := [fsBold]
+   else x := [];
+Tbutton(findComponent(NOM)).Font.Style := X;
+end;
+//------------------------------------------------------------------------------
+procedure TForm1.TexteBouton(NOM:string; T:string);
+begin
+Tbutton(findComponent(NOM)).Caption := T
+end;

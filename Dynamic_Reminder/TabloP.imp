@@ -1,0 +1,50 @@
+///=============================== PANELs ======================================
+// Dernière mise à jour : 31/12/2009
+//------------------------------------------------------------------------------
+procedure TForm1.CreaPanels(NOM:string; NL,NC:integer; L,H:integer;
+                  X,Y:integer; LST:string; couleur:integer; PROC:TNotifyEvent);
+var i,j,xx:Integer; z:string; bb:Tpanel;
+begin
+for j:=0 to NL-1 do
+    for i:=0 to NC-1 do
+        begin
+        xx := j*nC+i+1;
+        z := NOM + IntToStr(xx);
+        bb := Tpanel.Create(self);
+        bb.Name    := z;
+        bb.Left    := i*L+X;
+        bb.top     := j*H+Y;
+        bb.width   := L;
+        bb.height  := H;
+        bb.caption := geth(LST,xx-1); // type gestH
+        bb.Parent  := Form1;
+        bb.visible := true;
+        bb.Tag     := xx;
+        bb.OnClick := PROC ;
+        bb.BorderWidth := 3;
+        bb.BevelWidth  := 3;
+        bb.Color       := couleur;
+        bb.BevelOuter  := bvRaised; // bouton relevé
+       end
+end;
+//------------------------------------------------------------------------------
+procedure TForm1.FreePanels(NOM:string; NL,NC:integer);
+var i,n:integer;
+begin
+n := NL*NC-1;
+for i:=0 to n do TPanel(findComponent(NOM + inttostr(i))).Free
+end;
+//------------------------------------------------------------------------------
+procedure TForm1.TextePanel(NOM:string; T:string);
+begin
+TPanel(findComponent(NOM)).Caption := T
+end;
+//------------------------------------------------------------------------------
+procedure TForm1.FontPanels(NOM:string; NL,NC:integer; siz:integer);
+var i,n:integer;
+begin
+n := NL*NC;
+for i:=1 to n do TPanel(findComponent(NOM + inttostr(i))).Font.Size := siz ;
+end;
+///=============================================================================
+///=============================================================================

@@ -1,0 +1,38 @@
+    ///============================================================
+	/// à mettre dans la zone interface du projet, 
+	/// dans la partie public du TFORM1
+    ///========================================== BOUTONS =========
+    procedure CreaBoutons(NOM:string; NL,NC:integer; L,H:integer;
+                             X,Y:integer; LST:string; PROC:TNotifyEvent);
+		// NOM = nom générique des boutons (le nom de tous les boutons créés commencent par "NOM"
+		// NL = Nombre de lignes de boutons du bloc
+		// NC = nombre de colonnes de boutons par ligne
+		// L,H = Longeur et Hauteur de chaque bouton en pixel
+		// x,y = coordonnées gauche et Haute du premier bouton du bloc
+		// LST = chaine de caractères contenant tous les captions des boutons, séparés par des points virgules
+		//       (voir utilisation de l'unité GestH )
+		// PROC = procédure appelées par un clic sur un des boutons
+		//        c'est dans cette procédure que sera géré en fait l'utilisation des boutons
+		
+    procedure FreeBoutons(NOM:string; NL,NC:integer);  // pour tout détruire avant de quitter
+	
+	//------ gestion du bloc de bouton -------------------------------------- 
+    procedure FontBoutons(NOM:string; NL,NC:integer; siz:integer);
+	//  modifie la taille de la fonte de tous les boutons (siz)
+	
+    procedure GrasBoutons(NOM:string; NL,NC:integer; e:integer=1);
+	//  met en gras ou non tous les boutons :
+	//    e omis ou =1 : gras,   e=0 : maigre
+	
+    procedure CaptionsBoutons(NOM:string; NL,NC:integer; H:string);
+	//  change tous les captions des bouton avec le contenu de la chaine H (type gestH)
+	
+	//---- gestion bouton par bouton ----------------------------------------
+	procedure GrasBouton(NOM:string; e:integer=1); // si e=1 ou omis:gras, si e=0,:normal
+	//  met en gras ou non un seul bouton défini par son NOM (générique + inttostr(position)
+	//   (  position N°Ligne-1 * Nombre de colonne + N) de colonne )
+	
+    procedure TexteBouton(NOM:string; T:string);
+	//  idem pour modifier un caption
+	//
+	// on peut rajouter sur le même principe d'autres modifications de propriété, uniques ou par bloc
